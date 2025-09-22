@@ -25,5 +25,5 @@ public class Book {
 
     @NotBlank
     @Column(unique=true)
-    private String ISBN;
+    private String isbn;
 }
