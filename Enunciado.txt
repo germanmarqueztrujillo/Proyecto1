@@ -1,0 +1,13 @@
+Implementa una API para gestionar una librería.
+
+Requisitos:
+
+Entidad Book (id, title, author, isbn).
+
+CRUD básico de libros.
+
+Buscar libros por título y autor.
+
+Validar que isbn sea único.
+
+Manejar error si se intenta crear un libro con ISBN repetido.
