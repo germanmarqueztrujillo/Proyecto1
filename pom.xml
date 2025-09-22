@@ -98,7 +98,7 @@
                 </configuration>
             </plugin>
 
-             <!-- Annotation Processor for MapStruct -->
+            <!-- Annotation Processor for MapStruct -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
