@@ -2,6 +2,8 @@ package com.example.library.book.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.library.book.dto.BookDTO;
+import com.example.library.book.mapper.BookMapper;
 import com.example.library.book.model.Book;
 import com.example.library.book.repository.BookRepository;
 
@@ -9,12 +11,15 @@ import com.example.library.book.repository.BookRepository;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, BookMapper bookMapper) {
         this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
-    public void createBook(Book book) {
+    public void saveBook(BookDTO bookDTO) {
+        Book book = bookMapper.toEntity(bookDTO);
         bookRepository.save(book);
     }
 }
