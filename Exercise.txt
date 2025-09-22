@@ -1,0 +1,13 @@
+Implement an API to manage a library.
+
+Requirements:
+
+- Book entity (id, title, author, ISBN).
+
+- Basic CRUD for books.
+
+- Search for books by title and author.
+
+- Validate that ISBN is unique.
+
+- Handle error if attempting to create a book with a duplicate ISBN.
