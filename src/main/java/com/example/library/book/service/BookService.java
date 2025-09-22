@@ -29,4 +29,15 @@ public class BookService {
         .orElseThrow(() -> new BookNotFoundException(id));
         return bookMapper.toDTO(book);
     }
+
+    public void updateBookById(Long id, BookDTO bookDTO) {
+        Book book = bookRepository.findById(id)
+        .orElseThrow(() -> new BookNotFoundException(id));
+
+        book.setAuthor(bookDTO.getAuthor());
+        book.setTitle(bookDTO.getTitle());
+        book.setIsbn(bookDTO.getIsbn());
+
+        bookRepository.save(book);
+    }
 }
