@@ -44,4 +44,11 @@ public class BookService {
     public void updateBookTitleById(Long id, BookDTO bookDTO) {
         bookRepository.updateTitleById(id, bookDTO.getTitle());
     }
+
+    public void deleteBookById(Long id) {
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException(id);
+        }
+        bookRepository.deleteById(id);
+    }
 }
