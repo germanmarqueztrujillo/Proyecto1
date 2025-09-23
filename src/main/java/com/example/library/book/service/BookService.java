@@ -42,6 +42,9 @@ public class BookService {
     }
 
     public void updateBookTitleById(Long id, BookDTO bookDTO) {
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException(id);
+        }
         bookRepository.updateTitleById(id, bookDTO.getTitle());
     }
 
