@@ -40,4 +40,8 @@ public class BookService {
 
         bookRepository.save(book);
     }
+
+    public void updateBookTitleById(Long id, BookDTO bookDTO) {
+        bookRepository.updateTitleById(id, bookDTO.getTitle());
+    }
 }

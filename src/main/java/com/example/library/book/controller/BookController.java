@@ -1,6 +1,7 @@
 package com.example.library.book.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,5 +38,10 @@ public class BookController {
     @PutMapping("/{id}")
     public void updateBookById(@PathVariable Long id, @Valid @RequestBody BookDTO bookDTO) {
         bookService.updateBookById(id, bookDTO);
+    }
+
+    @PatchMapping("/{id}")
+    public void updateBookTitleById(@PathVariable Long id, @Valid @RequestBody BookDTO bookDTO) {
+        bookService.updateBookTitleById(id, bookDTO);
     }
 }
