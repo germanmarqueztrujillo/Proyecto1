@@ -1,5 +1,7 @@
 package com.example.library.book.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +17,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Transactional
     @Query("UPDATE Book b SET b.title = :title WHERE b.id = :id")
     void updateTitleById(@Param("id") Long id, @Param("title") String title);
+
+    Optional<Book> findByTitleAndAuthor(String title, String author);
 }

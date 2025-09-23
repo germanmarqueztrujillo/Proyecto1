@@ -15,11 +15,16 @@ import java.util.Optional;
 @RestControllerAdvice(basePackages = "com.example.library.book")
 public class BookExceptionHandler {
 
-    @ExceptionHandler(BookNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleBookNotFound(BookNotFoundException ex) {
+    @ExceptionHandler(BookNotFoundExceptionById.class)
+    public ResponseEntity<Map<String, Object>> handleBookNotFound(BookNotFoundExceptionById ex) {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(BookNotFoundExceptionByTitleAndAuthor.class)
+    public ResponseEntity<Map<String, Object>> handleBookNotFound(BookNotFoundExceptionByTitleAndAuthor ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+    
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgument(IllegalArgumentException ex) {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());

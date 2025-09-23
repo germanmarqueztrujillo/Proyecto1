@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.library.book.dto.BookDTO;
@@ -32,8 +33,13 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public BookDTO readBookById(@PathVariable Long id) {
+    public BookDTO getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
+    }
+
+    @GetMapping("/search")
+    public BookDTO getBookByTitleAndAuthor(@RequestParam String title, @RequestParam String author) {
+        return bookService.getBookByTitleAndAuthor(title, author);
     }
 
     @PutMapping("/{id}")

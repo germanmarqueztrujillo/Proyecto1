@@ -3,7 +3,8 @@ package com.example.library.book.service;
 import org.springframework.stereotype.Service;
 
 import com.example.library.book.dto.BookDTO;
-import com.example.library.book.exception.BookNotFoundException;
+import com.example.library.book.exception.BookNotFoundExceptionById;
+import com.example.library.book.exception.BookNotFoundExceptionByTitleAndAuthor;
 import com.example.library.book.mapper.BookMapper;
 import com.example.library.book.model.Book;
 import com.example.library.book.repository.BookRepository;
@@ -26,13 +27,19 @@ public class BookService {
 
     public BookDTO getBookById(Long id) {
         Book book = bookRepository.findById(id)
-        .orElseThrow(() -> new BookNotFoundException(id));
+        .orElseThrow(() -> new BookNotFoundExceptionById(id));
+        return bookMapper.toDTO(book);
+    }
+
+    public BookDTO getBookByTitleAndAuthor(String title, String author) {
+        Book book = bookRepository.findByTitleAndAuthor(title, author)
+        .orElseThrow(() -> new BookNotFoundExceptionByTitleAndAuthor(title, author));
         return bookMapper.toDTO(book);
     }
 
     public void updateBookById(Long id, BookDTO bookDTO) {
         Book book = bookRepository.findById(id)
-        .orElseThrow(() -> new BookNotFoundException(id));
+        .orElseThrow(() -> new BookNotFoundExceptionById(id));
 
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
@@ -43,14 +50,14 @@ public class BookService {
 
     public void updateBookTitleById(Long id, BookDTO bookDTO) {
         if (!bookRepository.existsById(id)) {
-            throw new BookNotFoundException(id);
+            throw new BookNotFoundExceptionById(id);
         }
         bookRepository.updateTitleById(id, bookDTO.getTitle());
     }
 
     public void deleteBookById(Long id) {
         if (!bookRepository.existsById(id)) {
-            throw new BookNotFoundException(id);
+            throw new BookNotFoundExceptionById(id);
         }
         bookRepository.deleteById(id);
     }

@@ -7,7 +7,6 @@ Requirements:
 - Basic CRUD for books.
 
 - Search for books by title and author.
-List<Book> findByTitleAndAuthor(String title, String author);
 
 - Validate that ISBN is unique.
 
