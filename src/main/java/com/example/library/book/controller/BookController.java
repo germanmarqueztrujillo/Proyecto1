@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.library.book.dto.BookDTO;
 import com.example.library.book.service.BookService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -23,7 +25,7 @@ public class BookController {
     }
 
     @PostMapping
-    public void createBook(@RequestBody BookDTO bookDTO) {
+    public void createBook(@Valid @RequestBody BookDTO bookDTO) {
         bookService.saveBook(bookDTO);
     }
 
@@ -33,7 +35,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public void updateBookById(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+    public void updateBookById(@PathVariable Long id, @Valid @RequestBody BookDTO bookDTO) {
         bookService.updateBookById(id, bookDTO);
     }
 }
